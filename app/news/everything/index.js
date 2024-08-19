@@ -47,8 +47,8 @@ const AllNews = () => {
     );
   }
 
-  // Ensure the key is unique
-  const keyExtractor = (item) => item.title; // Use a unique identifier
+// Ensure the key is unique
+const keyExtractor = (item) => item.id || `default_key_${Math.random()}`;
 
   return (
     <View style={styles.container}>
@@ -73,8 +73,9 @@ const AllNews = () => {
               style={styles.articleContainer}
               onPress={() =>
                 router.push({
-                  pathname: `/news/details/${encodeURIComponent(item.url)}`,
+                  pathname: '/news/details',
                   params: {
+                    url: item.url,
                     title: item.title,
                     description: item.description,
                     content: item.content,
